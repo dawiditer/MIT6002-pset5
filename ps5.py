@@ -391,11 +391,15 @@ if __name__ == '__main__':
 #    plot(problem4_ii(), TRAINING_INTERVAL, [1])
         
     # Part B
-    samples = gen_cities_avg(climate, CITIES, TRAINING_INTERVAL)
-    plot(samples, TRAINING_INTERVAL, [1])
+#    samples = gen_cities_avg(climate, CITIES, TRAINING_INTERVAL)
+#    plot(samples, TRAINING_INTERVAL, [1])
 
     # Part C
-    # TODO: replace this line with your code
+    #national yearly temperatures, ie, avearge temperatures
+    national_temps = gen_cities_avg(climate, CITIES, TRAINING_INTERVAL)
+    
+    samples = moving_average(national_temps, 5)
+    plot(samples, TRAINING_INTERVAL, [1])
 
     # Part D.2
     # TODO: replace this line with your code
