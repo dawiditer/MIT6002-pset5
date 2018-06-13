@@ -354,7 +354,6 @@ def gen_std_devs(climate, multi_cities, years):
         avgs_annual_temps = sums_of_temp/len(multi_cities) 
         #standard deviation
         std = pylab.std(avgs_annual_temps)
-        
         annual_stds.append(std)
     
     return pylab.array(annual_stds)        
@@ -435,10 +434,10 @@ if __name__ == '__main__':
     national_training_temps = gen_cities_avg(climate, CITIES, TRAINING_INTERVAL)
     training_samples = moving_average(national_training_temps, 5)
     models = plot_training(training_samples, TRAINING_INTERVAL, [1, 2, 20])
-        
-    # Part E
     national_testing_temps = gen_cities_avg(climate, CITIES, TESTING_INTERVAL)
     xvals = pylab.array(TESTING_INTERVAL)
     yvals = pylab.array(national_testing_temps)
     
     evaluate_models_on_testing(xvals, yvals, models)
+        
+    # Part E
