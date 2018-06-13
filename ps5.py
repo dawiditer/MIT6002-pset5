@@ -336,9 +336,29 @@ def gen_std_devs(climate, multi_cities, years):
         this array corresponds to the standard deviation of the average annual 
         city temperatures for the given cities in a given year.
     """
-    # TODO
-    pass
-
+    #Calculate a temperature for each day in that year, 
+    #by averaging the temperatures for that day across the specified cities.
+    annual_stds = []
+    #Get an array holding the average temperatures for each day
+    for year in years:
+        #total temperatures for each city
+        sums_of_temp = pylab.array([])
+        for city in multi_cities:
+            city_annual_temps = climate.get_yearly_temp(city, year)
+            if not sums_of_temp.any():
+                sums_of_temp = pylab.array([0]*len(city_annual_temps))
+                
+            sums_of_temp = sums_of_temp + city_annual_temps
+            
+        #daily average temperatures 
+        avgs_annual_temps = sums_of_temp/len(multi_cities) 
+        #standard deviation
+        std = pylab.std(avgs_annual_temps)
+        
+        annual_stds.append(std)
+    
+    return pylab.array(annual_stds)        
+        
 def evaluate_models_on_testing(x, y, models):
     """
     For each regression model, compute the RMSE for this model and plot the
