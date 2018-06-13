@@ -363,8 +363,8 @@ def evaluate_models_on_testing(x, y, models):
     Returns:
         None
     """
-    # TODO
-    pass
+    for model in models:
+        _plot_model(x, y, model, rmse)
 
 if __name__ == '__main__':
     # Part A.4
@@ -387,12 +387,14 @@ if __name__ == '__main__':
             avg_temp = climate.get_yearly_temp(city, year).mean()
             samples.append(avg_temp)
         return samples
-
+    
+    ## Helper method ##
     def plot(samples, years, deg):
         xvals = pylab.array(years)
         yvals = pylab.array(samples)
         models = generate_models(xvals, yvals, deg)
         evaluate_models_on_training(xvals, yvals, models)
+    ## end og helper method ##
     
 #    plot(problem4_i(), TRAINING_INTERVAL, [1])
 #    plot(problem4_ii(), TRAINING_INTERVAL, [1])
@@ -402,11 +404,10 @@ if __name__ == '__main__':
 #    plot(samples, TRAINING_INTERVAL, [1])
 
     # Part C
-    #national yearly temperatures, ie, avearge temperatures
-    national_temps = gen_cities_avg(climate, CITIES, TRAINING_INTERVAL)
-    
-    samples = moving_average(national_temps, 5)
-    plot(samples, TRAINING_INTERVAL, [1])
+#    national_temps = gen_cities_avg(climate, CITIES, TRAINING_INTERVAL)
+#    
+#    samples = moving_average(national_temps, 5)
+#    plot(samples, TRAINING_INTERVAL, [1])
 
     # Part D.2
     # TODO: replace this line with your code
