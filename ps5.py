@@ -185,8 +185,13 @@ def r_squared(y, estimated):
     Returns:
         a float for the R-squared error term
     """
-    # TODO
-    pass
+    #numerator
+    estimatedError = ((y - estimated)**2).sum()
+    #denom
+    y_mean = y.mean()
+    variability = ((y - y_mean)**2).sum()
+    
+    return 1.0 - estimatedError/variability
 
 def evaluate_models_on_training(x, y, models):
     """
