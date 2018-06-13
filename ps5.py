@@ -348,12 +348,29 @@ def evaluate_models_on_testing(x, y, models):
     pass
 
 if __name__ == '__main__':
-
-    pass 
-
     # Part A.4
-    # TODO: replace this line with your code
-
+    climate = Climate("data.csv")
+    city = 'NEW YORK'
+    
+    def problem4_i():
+        samples = []
+        month = 1
+        day = 10
+        for year in TRAINING_INTERVAL:
+            samples.append(climate.get_daily_temp(city, month, day, year))
+            
+        xvals = pylab.array(TRAINING_INTERVAL)
+        yvals = pylab.array(samples)
+        #generate a 1-degree model
+        models = generate_models(xvals, yvals, [1])
+        #plot
+        evaluate_models_on_training(xvals, yvals, models)
+    
+    problem4_i()
+    
+    
+        
+        
     # Part B
     # TODO: replace this line with your code
 
