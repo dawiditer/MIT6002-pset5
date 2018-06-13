@@ -389,33 +389,36 @@ if __name__ == '__main__':
         return samples
     
     ## Helper method ##
-    def plot(samples, years, deg):
+    def plot_training(samples, years, deg):
         xvals = pylab.array(years)
         yvals = pylab.array(samples)
         models = generate_models(xvals, yvals, deg)
         evaluate_models_on_training(xvals, yvals, models)
+        
+        return models
     ## end og helper method ##
     
-#    plot(problem4_i(), TRAINING_INTERVAL, [1])
-#    plot(problem4_ii(), TRAINING_INTERVAL, [1])
+#    plot_training(problem4_i(), TRAINING_INTERVAL, [1])
+#    plot_training(problem4_ii(), TRAINING_INTERVAL, [1])
         
     # Part B
 #    samples = gen_cities_avg(climate, CITIES, TRAINING_INTERVAL)
-#    plot(samples, TRAINING_INTERVAL, [1])
+#    plot_training(samples, TRAINING_INTERVAL, [1])
 
     # Part C
 #    national_temps = gen_cities_avg(climate, CITIES, TRAINING_INTERVAL)
 #    
 #    samples = moving_average(national_temps, 5)
-#    plot(samples, TRAINING_INTERVAL, [1])
+#    plot_training(samples, TRAINING_INTERVAL, [1])
 
     # Part D.2
-    # Compute 5-year moving averages of the national yearly temperature 
-    # from 1961-2009 as your training data samples.
-    national_temps = gen_cities_avg(climate, CITIES, TRAINING_INTERVAL)
-    training_samples = moving_average(national_temps, 5)
-    # Fit the samples to polynomials of degree 1, 2 and 20.
-    plot(training_samples, TRAINING_INTERVAL, [1, 2, 20])
+    national_training_temps = gen_cities_avg(climate, CITIES, TRAINING_INTERVAL)
+    training_samples = moving_average(national_training_temps, 5)
+    models = plot_training(training_samples, TRAINING_INTERVAL, [1, 2, 20])
         
     # Part E
-    # TODO: replace this line with your code
+    national_testing_temps = gen_cities_avg(climate, CITIES, TESTING_INTERVAL)
+    xvals = pylab.array(TESTING_INTERVAL)
+    yvals = pylab.array(national_testing_temps)
+    
+    evaluate_models_on_testing(xvals, yvals, models)
