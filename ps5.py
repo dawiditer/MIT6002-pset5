@@ -311,8 +311,12 @@ def rmse(y, estimated):
     Returns:
         a float for the root mean square error term
     """
-    # TODO
-    pass
+    #numrator
+    estimation_error = ((y - estimated)**2).sum()
+    #denom
+    sample_size = len(y)
+    
+    return pylab.sqrt(estimation_error/sample_size)
 
 def gen_std_devs(climate, multi_cities, years):
     """
