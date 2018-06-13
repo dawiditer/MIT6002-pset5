@@ -431,13 +431,16 @@ if __name__ == '__main__':
 #    plot_training(samples, TRAINING_INTERVAL, [1])
 
     # Part D.2
-    national_training_temps = gen_cities_avg(climate, CITIES, TRAINING_INTERVAL)
-    training_samples = moving_average(national_training_temps, 5)
-    models = plot_training(training_samples, TRAINING_INTERVAL, [1, 2, 20])
-    national_testing_temps = gen_cities_avg(climate, CITIES, TESTING_INTERVAL)
-    xvals = pylab.array(TESTING_INTERVAL)
-    yvals = pylab.array(national_testing_temps)
-    
-    evaluate_models_on_testing(xvals, yvals, models)
+#    national_training_temps = gen_cities_avg(climate, CITIES, TRAINING_INTERVAL)
+#    training_samples = moving_average(national_training_temps, 5)
+#    models = plot_training(training_samples, TRAINING_INTERVAL, [1, 2, 20])
+#    national_testing_temps = gen_cities_avg(climate, CITIES, TESTING_INTERVAL)
+#    xvals = pylab.array(TESTING_INTERVAL)
+#    yvals = pylab.array(national_testing_temps)
+#    
+#    evaluate_models_on_testing(xvals, yvals, models)
         
     # Part E
+    stds = gen_std_devs(climate, CITIES, TRAINING_INTERVAL)
+    training_samples = moving_average(stds, 5)
+    plot_training(training_samples, TRAINING_INTERVAL, [1])
