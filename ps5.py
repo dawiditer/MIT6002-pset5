@@ -410,7 +410,12 @@ if __name__ == '__main__':
 #    plot(samples, TRAINING_INTERVAL, [1])
 
     # Part D.2
-    # TODO: replace this line with your code
-
+    # Compute 5-year moving averages of the national yearly temperature 
+    # from 1961-2009 as your training data samples.
+    national_temps = gen_cities_avg(climate, CITIES, TRAINING_INTERVAL)
+    training_samples = moving_average(national_temps, 5)
+    # Fit the samples to polynomials of degree 1, 2 and 20.
+    plot(training_samples, TRAINING_INTERVAL, [1, 2, 20])
+        
     # Part E
     # TODO: replace this line with your code
