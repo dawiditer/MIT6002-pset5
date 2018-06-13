@@ -358,17 +358,25 @@ if __name__ == '__main__':
         day = 10
         for year in TRAINING_INTERVAL:
             samples.append(climate.get_daily_temp(city, month, day, year))
-            
+        return samples
+                
+    def problem4_ii():
+        #data samples are the averages for each year
+        samples = []
+        for year in TRAINING_INTERVAL:
+            avg_temp = climate.get_yearly_temp(city, year).mean()
+            samples.append(avg_temp)
+        return samples
+
+    def plot(samples, deg):
+        """Assumes xvals are the TRAINING_INTERVAL"""
         xvals = pylab.array(TRAINING_INTERVAL)
         yvals = pylab.array(samples)
-        #generate a 1-degree model
         models = generate_models(xvals, yvals, [1])
-        #plot
         evaluate_models_on_training(xvals, yvals, models)
     
-    problem4_i()
-    
-    
+    plot(problem4_i(), 1)
+    plot(problem4_ii(), 1)
         
         
     # Part B
