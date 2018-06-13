@@ -292,7 +292,7 @@ def moving_average(y, window_length):
     Returns:
         an 1-d pylab array with the same length as y storing moving average of
         y-coordinates of the N sample points
-    """
+    """        
     # TODO
     pass
 
@@ -360,12 +360,12 @@ def evaluate_models_on_testing(x, y, models):
 if __name__ == '__main__':
     # Part A.4
     climate = Climate("data.csv")
-    city = 'NEW YORK'
     
     def problem4_i():
         samples = []
         month = 1
-        day = 10
+        day = 10    
+        city = 'NEW YORK'
         for year in TRAINING_INTERVAL:
             samples.append(climate.get_daily_temp(city, month, day, year))
         return samples
@@ -373,24 +373,24 @@ if __name__ == '__main__':
     def problem4_ii():
         #data samples are the averages for each year
         samples = []
+        city = 'NEW YORK'
         for year in TRAINING_INTERVAL:
             avg_temp = climate.get_yearly_temp(city, year).mean()
             samples.append(avg_temp)
         return samples
 
-    def plot(samples, deg):
-        """Assumes xvals are the TRAINING_INTERVAL"""
-        xvals = pylab.array(TRAINING_INTERVAL)
+    def plot(samples, years, deg):
+        xvals = pylab.array(years)
         yvals = pylab.array(samples)
-        models = generate_models(xvals, yvals, [1])
+        models = generate_models(xvals, yvals, deg)
         evaluate_models_on_training(xvals, yvals, models)
     
-    plot(problem4_i(), 1)
-    plot(problem4_ii(), 1)
-        
+#    plot(problem4_i(), TRAINING_INTERVAL, [1])
+#    plot(problem4_ii(), TRAINING_INTERVAL, [1])
         
     # Part B
-    # TODO: replace this line with your code
+    samples = gen_cities_avg(climate, CITIES, TRAINING_INTERVAL)
+    plot(samples, TRAINING_INTERVAL, [1])
 
     # Part C
     # TODO: replace this line with your code
